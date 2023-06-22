@@ -4,69 +4,69 @@
     "text": "I had a great day at the beach today!",
     "received": true,
     "timestamp": "2023-06-20T10:00:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note2",
     "text": "Had an amazing time relaxing on the sandy shores!",
     "received": true,
     "timestamp": "2023-06-20T11:30:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note3",
     "text": "Don't forget to pick up some groceries.",
     "received": true,
     "timestamp": "2023-06-20T12:45:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note4",
     "text": "I'm really looking forward to the weekend.",
     "received": true,
     "timestamp": "2023-06-20T15:00:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note5",
     "text": "Can't wait for the weekend!",
     "received": true,
     "timestamp": "2023-06-20T16:30:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note6",
     "text": "The weekend is just around the corner!",
     "received": true,
     "timestamp": "2023-06-20T18:15:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note7",
     "text": "Remember to buy groceries on the way home.",
     "received": true,
     "timestamp": "2023-06-20T19:45:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note8",
     "text": "Enjoyed a wonderful time playing volleyball on the sand!",
     "received": true,
     "timestamp": "2023-06-20T20:30:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note9",
     "text": "I need to get groceries after work.",
     "received": true,
     "timestamp": "2023-06-20T21:15:00Z",
-    "links": []
+    "tags": []
   },
   {
     "id": "note10",
     "text": "Had a busy day at the office today.",
     "received": true,
     "timestamp": "2023-06-20T22:00:00Z",
-    "links": []
+    "tags": []
   }
 ]
