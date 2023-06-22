@@ -5,13 +5,6 @@
 //  Created by Leszek Mielnikow on 21/06/2023.
 //
 
-//
-//  MessagesManager.swift
-//  ThoughtsApp
-//
-//  Created by Leszek Mielnikow on 21/06/2023.
-//
-
 import Foundation
 
 class MessagesManager: ObservableObject {
@@ -41,6 +34,7 @@ class MessagesManager: ObservableObject {
                 }
             }
         }
+        print("Retrieved messages: \(messages)")
     }
     
     // Store messages in the file
@@ -48,6 +42,7 @@ class MessagesManager: ObservableObject {
         do {
             let data = try JSONEncoder().encode(messages)
             try data.write(to: messagesFileURL, options: .atomic)
+            print("Messages stored successfully.")
         } catch {
             print("Failed to store messages: \(error)")
         }
@@ -60,5 +55,7 @@ class MessagesManager: ObservableObject {
         messages.sort { $0.timestamp < $1.timestamp }
         
         storeMessages()
+        
+        print("New message added: \(newMessage)")
     }
 }

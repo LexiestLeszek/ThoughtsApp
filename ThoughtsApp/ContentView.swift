@@ -10,27 +10,27 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var messagesManager = MessagesManager()
-    @State private var scrollToBottom = false // New state variable
-    
+    @State private var scrollToBottom = false
+    @State private var searchQuery = ""
+
     var body: some View {
         VStack {
             VStack {
-                TitleRow()
+                TitleRow(searchQuery: $searchQuery)
                 
                 ScrollViewReader { proxy in
                     ScrollView {
-                        ForEach(messagesManager.messages, id: \.id) { message in
+                        ForEach(filteredMessages, id: \.id) { message in
                             Section(header: MessageDateHeader(date: message.timestamp)) {
                                 MessageBubble(message: message)
                             }
                         }
                         .onChange(of: scrollToBottom) { newValue in
-                            // When scrollToBottom changes, scroll to the bottom of the conversation
                             if newValue {
                                 withAnimation {
                                     proxy.scrollTo(messagesManager.lastMessageId, anchor: .bottom)
                                     DispatchQueue.main.async {
-                                        scrollToBottom = false // Reset scrollToBottom to false after scrolling
+                                        scrollToBottom = false
                                     }
                                 }
                             }
@@ -40,14 +40,12 @@ struct ContentView: View {
                     .background(.white)
                     .cornerRadius(30, corners: [.topLeft, .topRight])
                     .onChange(of: messagesManager.lastMessageId) { id in
-                        // When the lastMessageId changes, set scrollToBottom to true
                         scrollToBottom = true
                     }
                 }
             }
             .background(Color("Pur"))
             
-            // Arrow button to scroll to the last message
             Button(action: {
                 scrollToBottom = true
             }) {
@@ -62,6 +60,14 @@ struct ContentView: View {
                 .environmentObject(messagesManager)
         }
     }
+    
+    private var filteredMessages: [Message] {
+        if searchQuery.isEmpty {
+            return messagesManager.messages
+        } else {
+            return messagesManager.messages.filter { $0.text.localizedCaseInsensitiveContains(searchQuery) }
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -69,6 +75,9 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+// Rest of the code remains unchanged.
+
 
 struct MessageDateHeader: View {
     let date: Date

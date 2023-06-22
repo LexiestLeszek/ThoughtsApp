@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TitleRow: View {
-    @State private var searchQuery = ""
+    @Binding var searchQuery: String
     
     var imageUrl = URL(fileURLWithPath: "/Users/leszekmielnikow/Coding/ThoughtsApp/ThoughtsApp/Assets.xcassets/AppIcon.appiconset/AppIcon~ios-marketing.png")
     var name = "Thoughts"
@@ -24,13 +24,15 @@ struct TitleRow: View {
                 ProgressView()
             }
             
-            TextField("Question?", text: $searchQuery)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal, 3)
-                .frame(maxWidth: .infinity)
+            TextField("Search", text: $searchQuery, onCommit: {
+                // Perform search based on searchQuery
+                // Add your logic here to handle the search functionality
+            })
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.horizontal, 3)
+            .frame(maxWidth: .infinity)
             
             Button(action: {
-                
                 // Perform search based on searchQuery
                 // Add your logic here to handle the search functionality
                 
@@ -50,7 +52,9 @@ struct TitleRow: View {
 
 struct TitleRow_Previews: PreviewProvider {
     static var previews: some View {
-        TitleRow()
+        TitleRow(searchQuery: .constant(""))
             .background(Color("Pur"))
     }
 }
+
+// Rest of the code remains unchanged.
