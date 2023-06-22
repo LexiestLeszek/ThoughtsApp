@@ -62,8 +62,30 @@
     "timestamp": "2023-06-20T21:15:00Z",
     "tags": []
   },
+
   {
     "id": "note10",
+    "text": "Might be cool to resell sneakers buying them on EBAY and selling on Vinted",
+    "received": true,
+    "timestamp": "2023-03-20T21:15:00Z",
+    "tags": []
+  },
+  {
+    "id": "note11",
+    "text": "I can start a marketing agency providing consultancy with my SMM experience",
+    "received": true,
+    "timestamp": "2023-03-20T21:15:00Z",
+    "tags": []
+  },
+  {
+    "id": "note12",
+    "text": "Udemy course idea: teaching marketing for 20$ per course",
+    "received": true,
+    "timestamp": "2023-03-20T21:15:00Z",
+    "tags": []
+  },
+  {
+    "id": "note13",
     "text": "Had a busy day at the office today.",
     "received": true,
     "timestamp": "2023-06-20T22:00:00Z",

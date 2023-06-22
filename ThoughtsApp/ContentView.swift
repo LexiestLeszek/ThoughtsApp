@@ -19,7 +19,9 @@ struct ContentView: View {
                 ScrollViewReader { proxy in
                     ScrollView {
                         ForEach(messagesManager.messages, id: \.id) { message in
-                            MessageBubble(message: message)
+                            Section(header: MessageDateHeader(date: message.timestamp)) {
+                                MessageBubble(message: message)
+                            }
                         }
                         .onChange(of: scrollToBottom) { newValue in
                             // When scrollToBottom changes, scroll to the bottom of the conversation
@@ -41,7 +43,6 @@ struct ContentView: View {
                         scrollToBottom = true
                     }
                 }
-
             }
             .background(Color("Pur"))
             
@@ -53,7 +54,7 @@ struct ContentView: View {
                     .font(.system(size: 20))
                     .foregroundColor(.gray)
                     .padding(.top, 8)
-                    .background(Color.clear)
+                    .background(.clear)
             }
             
             MessageField()
@@ -65,5 +66,26 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct MessageDateHeader: View {
+    let date: Date
+    
+    var body: some View {
+        if !Calendar.current.isDateInToday(date) {
+            Text(formatDate(date))
+                .font(.caption)
+                .foregroundColor(.gray)
+                .padding(.vertical, 8)
+        } else {
+            EmptyView()
+        }
+    }
+    
+    private func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM d, yyyy"
+        return dateFormatter.string(from: date)
     }
 }

@@ -12,28 +12,25 @@ struct MessageBubble: View {
     @State private var showTime = false
     
     var body: some View {
-        VStack(alignment: message.received ? .leading : .trailing) {
-            HStack {
-                Text(message.text)
-                    .padding()
-                    .background(message.received ? Color("Mint") : Color("Pur"))
-                    .cornerRadius(30)
-            }
-            .frame(maxWidth: 300, alignment: message.received ? .leading : .trailing)
-            .onTapGesture {
-                showTime.toggle()
-            }
+        VStack(alignment: .trailing) {
+            Text(message.text)
+                .padding()
+                .background(Color("Pur"))
+                .cornerRadius(30)
             
             if showTime {
                 Text("\(message.timestamp.formatted(.dateTime.hour().minute()))")
                     .font(.caption2)
                     .foregroundColor(.gray)
-                    .padding(message.received ? .leading : .trailing, 25)
+                    .padding(.trailing, 25)
             }
         }
-        .frame(maxWidth: .infinity, alignment: message.received ? .leading : .trailing)
-        .padding(message.received ? .leading : .trailing)
+        .frame(maxWidth: .infinity, alignment: .trailing)
+        .padding(.trailing)
         .padding(.horizontal, 10)
+        .onTapGesture {
+            showTime.toggle()
+        }
     }
 }
 
