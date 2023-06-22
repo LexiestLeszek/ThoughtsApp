@@ -5,6 +5,13 @@
 //  Created by Leszek Mielnikow on 21/06/2023.
 //
 
+//
+//  MessagesManager.swift
+//  ThoughtsApp
+//
+//  Created by Leszek Mielnikow on 21/06/2023.
+//
+
 import Foundation
 
 class MessagesManager: ObservableObject {
@@ -32,11 +39,7 @@ class MessagesManager: ObservableObject {
                 if let id = messages.last?.id {
                     lastMessageId = id
                 }
-                print("Messages loaded from JSON file:")
-                print(messages)
             }
-        } else {
-            print("No messages JSON file found.")
         }
     }
     
@@ -45,8 +48,6 @@ class MessagesManager: ObservableObject {
         do {
             let data = try JSONEncoder().encode(messages)
             try data.write(to: messagesFileURL, options: .atomic)
-            print("Messages stored in JSON file:")
-            print(messages)
         } catch {
             print("Failed to store messages: \(error)")
         }

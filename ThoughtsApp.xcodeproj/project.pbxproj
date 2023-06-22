@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		345592CD2A445586001DF8D0 /* SemanticSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345592CC2A445586001DF8D0 /* SemanticSearch.swift */; };
 		348C4B512A42F3AA00C81D78 /* ThoughtsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C4B502A42F3AA00C81D78 /* ThoughtsAppApp.swift */; };
 		348C4B532A42F3AA00C81D78 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C4B522A42F3AA00C81D78 /* ContentView.swift */; };
 		348C4B552A42F3AB00C81D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348C4B542A42F3AB00C81D78 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		345592CC2A445586001DF8D0 /* SemanticSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticSearch.swift; sourceTree = "<group>"; };
 		348C4B4D2A42F3AA00C81D78 /* ThoughtsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThoughtsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		348C4B502A42F3AA00C81D78 /* ThoughtsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsAppApp.swift; sourceTree = "<group>"; };
 		348C4B522A42F3AA00C81D78 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				348C4B502A42F3AA00C81D78 /* ThoughtsAppApp.swift */,
 				348C4B522A42F3AA00C81D78 /* ContentView.swift */,
 				348C4B6C2A43086400C81D78 /* MessagesManager.swift */,
+				345592CC2A445586001DF8D0 /* SemanticSearch.swift */,
 				348C4B632A43010600C81D78 /* Models */,
 				348C4B5E2A42F5FE00C81D78 /* Components */,
 				348C4B542A42F3AB00C81D78 /* Assets.xcassets */,
@@ -193,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				348C4B532A42F3AA00C81D78 /* ContentView.swift in Sources */,
+				345592CD2A445586001DF8D0 /* SemanticSearch.swift in Sources */,
 				348C4B652A43012400C81D78 /* Message.swift in Sources */,
 				348C4B672A4302C700C81D78 /* MessageBubble.swift in Sources */,
 				348C4B6D2A43086400C81D78 /* MessagesManager.swift in Sources */,
