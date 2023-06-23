@@ -156,12 +156,7 @@ struct EditMessageView: View {
                 Spacer()
             }
             .navigationBarTitle("Edit Message")
-            .navigationBarItems(trailing: Button(action: {
-                deleteMessage()
-            }) {
-                Text("Delete")
-                    .foregroundColor(.red)
-            })
+            .navigationBarItems(leading: cancelButton, trailing: deleteButton)
         }
     }
     
@@ -183,4 +178,99 @@ struct EditMessageView: View {
         message = nil
         isPresented = false
     }
+    
+    private var cancelButton: some View {
+        Button(action: {
+            dismiss()
+        }) {
+            Text("Cancel")
+        }
+    }
+    
+    private var deleteButton: some View {
+        Button(action: {
+            deleteMessage()
+        }) {
+            Text("Delete")
+                .foregroundColor(.red)
+        }
+    }
 }
+
+// Working similarity search
+
+/*
+ import SwiftUI
+ import SimilaritySearchKit
+ import SimilaritySearchKitMiniLMAll
+
+ struct ContentView: View {
+     @StateObject private var messagesManager = MessagesManager()
+     @State private var querySentence: String = ""
+     @State private var similarityResults: [SearchResult] = []
+     @State private var similarityIndex: SimilarityIndex?
+
+     func loadIndex() async {
+         similarityIndex = await SimilarityIndex(
+             model: MiniLMEmbeddings(),
+             metric: CosineSimilarity()
+         )
+     }
+
+     private func searchSimilarity() async {
+         guard let index = similarityIndex else { return }
+         index.indexItems = []
+
+         for message in messagesManager.messages {
+             await index.addItem(id: message.id, text: message.text, metadata: ["source": "MessagesManager"])
+         }
+
+         let results = await index.search(querySentence)
+         similarityResults = results
+     }
+
+     var body: some View {
+         VStack {
+             List(messagesManager.messages, id: \.id) { message in
+                 Text(message.text)
+             }
+             .padding()
+
+             TextField("Query sentence", text: $querySentence)
+                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                 .padding()
+                 .background(Color.green.opacity(0.2))
+                 .cornerRadius(5)
+
+             Button("Run Similarity Search") {
+                 Task {
+                     await searchSimilarity()
+                 }
+             }
+             .foregroundColor(.white)
+             .padding()
+             .background(Color.blue)
+             .cornerRadius(8)
+             .padding()
+
+             List(similarityResults, id: \.id) { result in
+                 Text("Score: \(result.score)\nText: \(result.text)")
+             }
+             .padding()
+             .onAppear {
+                 Task {
+                     await loadIndex()
+                 }
+             }
+         }
+     }
+ }
+
+ struct ContentView_Previews: PreviewProvider {
+     static var previews: some View {
+         ContentView()
+     }
+ }
+
+ */
+
