@@ -12,7 +12,6 @@ struct Message: Identifiable, Codable {
     var text: String
     var received: Bool
     var timestamp: Date
-    var tags: [String] 
 }
 
 

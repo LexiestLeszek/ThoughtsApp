@@ -8,23 +8,20 @@
 import Foundation
 
 class MessagesManager: ObservableObject {
+    
     @Published private(set) var messages: [Message] = []
     @Published private(set) var lastMessageId: String = ""
     
-    // File URL for storing messages
-    private let messagesFileURL: URL
+    // UserDefaults key for storing messages
+    private let messagesUserDefaultsKey = "messages"
     
     init() {
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        self.messagesFileURL = documentsURL.appendingPathComponent("messages.json")
-        
         getMessages()
     }
     
-    // Retrieve messages from the file
+    // Retrieve messages from UserDefaults
     func getMessages() {
-        if FileManager.default.fileExists(atPath: messagesFileURL.path),
-           let data = try? Data(contentsOf: messagesFileURL) {
+        if let data = UserDefaults.standard.data(forKey: messagesUserDefaultsKey) {
             if let storedMessages = try? JSONDecoder().decode([Message].self, from: data) {
                 messages = storedMessages.sorted { $0.timestamp < $1.timestamp }
                 
@@ -37,11 +34,11 @@ class MessagesManager: ObservableObject {
         print("Retrieved messages: \(messages)")
     }
     
-    // Store messages in the file
+    // Store messages in UserDefaults
     private func storeMessages() {
         do {
             let data = try JSONEncoder().encode(messages)
-            try data.write(to: messagesFileURL, options: .atomic)
+            UserDefaults.standard.set(data, forKey: messagesUserDefaultsKey)
             print("Messages stored successfully.")
         } catch {
             print("Failed to store messages: \(error)")
@@ -50,12 +47,30 @@ class MessagesManager: ObservableObject {
     
     // Add a message
     func sendMessage(text: String) {
-        let newMessage = Message(id: "\(UUID())", text: text, received: false, timestamp: Date(), tags: [])
+        let newMessage = Message(id: "\(UUID())", text: text, received: false, timestamp: Date())
         messages.append(newMessage)
         messages.sort { $0.timestamp < $1.timestamp }
         
         storeMessages()
         
         print("New message added: \(newMessage)")
+    }
+    
+    // Delete a message
+    func deleteMessage(_ message: Message) {
+        if let index = messages.firstIndex(where: { $0.id == message.id }) {
+            messages.remove(at: index)
+            storeMessages()
+            print("Message deleted: \(message)")
+        }
+    }
+    
+    // Update a message
+    func updateMessage(_ message: Message, with newText: String) {
+        if let index = messages.firstIndex(where: { $0.id == message.id }) {
+            messages[index].text = newText
+            storeMessages()
+            print("Message updated: \(message)")
+        }
     }
 }

@@ -42,8 +42,7 @@ struct MessageBubble_Previews: PreviewProvider {
                     id: "12345",
                     text: "I've been coding applications from scratch in SwiftUI and it's so much fun!",
                     received: true,
-                    timestamp: Date(),
-                    tags: ["#22222"]
+                    timestamp: Date()
                 )
         )
     }
