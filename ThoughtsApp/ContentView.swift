@@ -97,7 +97,6 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
 struct MessageDateHeader: View {
     let date: Date
     
